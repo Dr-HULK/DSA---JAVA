@@ -19,8 +19,13 @@ public class Main {
             aux[arr[i]]++;
 
         // Calculating prefix sum at every index of array aux[]
-        for (int i = 1; i <= M; i++)
-            aux[i] += aux[i - 1];
+        int[] sortedArr = new int[N];
+        for (int i = N - 1; i >= 0; i--) {
+            int value = arr[i];  // Get the value from the original array
+            int position = aux[value];  // Get the position from the aux array
+            sortedArr[position - 1] = value;  // Place the value in sortedArr at the correct position
+            aux[value]--;  // Decrement the count in the aux array
+        }
 
         // Creating sortedArr[] from aux[] array
         int[] sortedArr = new int[N];
